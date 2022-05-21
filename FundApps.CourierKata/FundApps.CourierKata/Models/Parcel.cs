@@ -6,7 +6,8 @@ namespace FundApps.CourierKata.Models
     {
         public int LengthInCentimeters { get; set; }
         public int WidthInCentimeters { get; set; }
-        public int HeightInCentimeters { get; set; }        
+        public int HeightInCentimeters { get; set; }
+        public int WeightInKilograms { get; set; }
         public ParcelType ParcelType { get; set; }
         public decimal Cost { get; set; }
     }

@@ -25,7 +25,7 @@ namespace FundApps.CourierKata.Tests
             int height = 1;            
 
             //Act
-            var parcel = _service.CreateParcel(length, width, height);
+            var parcel = _service.CreateParcel(length, width, height, 1);
 
             //Assert
             Assert.AreEqual(ParcelType.Small, parcel.ParcelType);
@@ -44,7 +44,7 @@ namespace FundApps.CourierKata.Tests
         {
 
             //Act 
-            var parcel = _service.CreateParcel(length, width, height);
+            var parcel = _service.CreateParcel(length, width, height, 1);
 
             //Assert
             Assert.AreEqual(parcelType, parcel.ParcelType);
@@ -63,9 +63,8 @@ namespace FundApps.CourierKata.Tests
             int height = 1;
             int weight = 2;
 
-            //Act
-            //Act
-            var parcel = _service.CreateParcel(length, width, height);
+            //Act           
+            var parcel = _service.CreateParcel(length, width, height, weight);
 
             //Assert
             Assert.AreEqual(ParcelType.Small, parcel.ParcelType);

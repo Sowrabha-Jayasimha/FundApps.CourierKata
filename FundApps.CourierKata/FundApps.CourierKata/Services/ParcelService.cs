@@ -5,19 +5,24 @@ namespace FundApps.CourierKata.Services
 {
     public class ParcelService : IParcelService
     {
-        public Parcel CreateParcel(int length, int width, int height)
+        public Parcel CreateParcel(int length, int width, int height, int weight)
         {
             var parcel = new Parcel
             {
                 LengthInCentimeters = length,
                 WidthInCentimeters = width,
-                HeightInCentimeters = height
+                HeightInCentimeters = height,
+                WeightInKilograms = weight
             };
 
             if (length < 10 && width < 10 && height < 10)
             {
                 parcel.Cost = 3;
                 parcel.ParcelType = ParcelType.Small;
+                if(parcel.WeightInKilograms > 1)
+                {
+                    parcel.Cost += (parcel.WeightInKilograms - 1) * 2;
+                }
             }
             else if (length < 50 && width < 50 && height < 50)
             {

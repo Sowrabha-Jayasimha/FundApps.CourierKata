@@ -24,8 +24,8 @@ namespace FundApps.CourierKata.Tests
             //Arrange
             var parcels = new List<Parcel>
             {
-                _parcelService.CreateParcel(3, 3, 3),
-                _parcelService.CreateParcel(14, 14, 14)
+                _parcelService.CreateParcel(3, 3, 3, 1),
+                _parcelService.CreateParcel(14, 14, 14, 1)
             };
 
             //Act
@@ -43,9 +43,9 @@ namespace FundApps.CourierKata.Tests
             //Arrange
             var parcels = new List<Parcel>
             {
-                _parcelService.CreateParcel(3, 3, 3),
-                _parcelService.CreateParcel(14, 14, 14),
-                _parcelService.CreateParcel(60, 60, 60)
+                _parcelService.CreateParcel(3, 3, 3, 1),
+                _parcelService.CreateParcel(14, 14, 14, 1),
+                _parcelService.CreateParcel(60, 60, 60, 1)
             };
 
             //Act

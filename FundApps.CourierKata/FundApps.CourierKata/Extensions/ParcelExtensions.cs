@@ -1,22 +1,29 @@
 ﻿
 using FundApps.CourierKata.Enums;
 using FundApps.CourierKata.Models;
+using FundApps.CourierKata.Settings;
 
 namespace FundApps.CourierKata.Extensions
 {
     public static class ParcelExtensions
     {
-        public static Parcel SetParcelType(this Parcel parcel)
+        public static Parcel SetParcelType(this Parcel parcel, AppSettings appSettings)
         {
-            if (parcel.LengthInCentimeters < 10 && parcel.WidthInCentimeters < 10 && parcel.HeightInCentimeters < 10)
+            if (parcel.LengthInCentimeters < appSettings.SmallParcelMaxDimension && 
+                parcel.WidthInCentimeters < appSettings.SmallParcelMaxDimension && 
+                parcel.HeightInCentimeters < appSettings.SmallParcelMaxDimension)
             {                
                 parcel.ParcelType = ParcelType.Small;                
             }
-            else if (parcel.LengthInCentimeters < 50 && parcel.WidthInCentimeters < 50 && parcel.HeightInCentimeters < 50)
+            else if (parcel.LengthInCentimeters < appSettings.MediumParcelMaxDimension &&
+                parcel.WidthInCentimeters < appSettings.MediumParcelMaxDimension &&
+                parcel.HeightInCentimeters < appSettings.MediumParcelMaxDimension)
             {                
                 parcel.ParcelType = ParcelType.Medium;
             }
-            else if (parcel.LengthInCentimeters < 100 && parcel.WidthInCentimeters < 100 && parcel.HeightInCentimeters < 100)
+            else if (parcel.LengthInCentimeters < appSettings.LargeParcelMaxDimension &&
+                parcel.WidthInCentimeters < appSettings.LargeParcelMaxDimension &&
+                parcel.HeightInCentimeters < appSettings.LargeParcelMaxDimension)
             {                
                 parcel.ParcelType = ParcelType.Large;
             }
@@ -28,29 +35,29 @@ namespace FundApps.CourierKata.Extensions
             return parcel;
         }
 
-        public static Parcel SetParcelCost(this Parcel parcel)
+        public static Parcel SetParcelCost(this Parcel parcel, AppSettings appSettings)
         {
             switch(parcel.ParcelType)
             {
                 case ParcelType.Small:
-                    parcel.BaseParcelCost = 3;
-                    parcel.ExtraWeightCost = (parcel.WeightInKilograms > 1) ? 
-                        (parcel.WeightInKilograms - 1) * 2 : 0;
+                    parcel.BaseParcelCost = appSettings.SmallParcelCost;
+                    parcel.ExtraWeightCost = (parcel.WeightInKilograms > appSettings.SmallParcelMaxWeight) ? 
+                        (parcel.WeightInKilograms - appSettings.SmallParcelMaxWeight) * 2 : 0;
                     break;
                 case ParcelType.Medium:
-                    parcel.BaseParcelCost = 8;
-                    parcel.ExtraWeightCost = (parcel.WeightInKilograms > 3) ?
-                        (parcel.WeightInKilograms - 3) * 2 : 0;
+                    parcel.BaseParcelCost = appSettings.MediumParcelCost;
+                    parcel.ExtraWeightCost = (parcel.WeightInKilograms > appSettings.MediumParcelMaxWeight) ?
+                        (parcel.WeightInKilograms - appSettings.MediumParcelMaxWeight) * 2 : 0;
                     break;
                 case ParcelType.Large:
-                    parcel.BaseParcelCost = 15;
-                    parcel.ExtraWeightCost = (parcel.WeightInKilograms > 6) ?
-                        (parcel.WeightInKilograms - 6) * 2 : 0;
+                    parcel.BaseParcelCost = appSettings.LargeParcelCost;
+                    parcel.ExtraWeightCost = (parcel.WeightInKilograms > appSettings.LargeParcelMaxWeight) ?
+                        (parcel.WeightInKilograms - appSettings.LargeParcelMaxWeight) * 2 : 0;
                     break;
                 case ParcelType.XL:
-                    parcel.BaseParcelCost = 25;
-                    parcel.ExtraWeightCost = (parcel.WeightInKilograms > 10) ?
-                        (parcel.WeightInKilograms - 10) * 2 : 0;
+                    parcel.BaseParcelCost = appSettings.XlParcelCost;
+                    parcel.ExtraWeightCost = (parcel.WeightInKilograms > appSettings.XlParcelMaxWeight) ?
+                        (parcel.WeightInKilograms - appSettings.XlParcelMaxWeight) * 2 : 0;
                     break;
             }
 

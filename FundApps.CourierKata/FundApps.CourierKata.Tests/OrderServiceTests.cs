@@ -14,7 +14,7 @@ namespace FundApps.CourierKata.Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            _parcelService = new ParcelService();
+            _parcelService = new ParcelService(TestHelper.GetAppSettings());
             _orderService = new OrderService();
         }
 

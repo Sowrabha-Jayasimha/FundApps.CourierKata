@@ -1,10 +1,10 @@
 ﻿using FundApps.CourierKata.Enums;
 using FundApps.CourierKata.Models;
-using System;
+using FundApps.CourierKata.Services;
 
 namespace FundApps.CourierKata
 {
-    public class ParcelService
+    public class ParcelService : IParcelService
     {
         public Parcel CreateParcel(int length, int width, int height)
         {

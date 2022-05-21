@@ -1,0 +1,10 @@
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\bin\Debug\netcoreapp3.1\FundApps.CourierKata.deps.json
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\bin\Debug\netcoreapp3.1\FundApps.CourierKata.dll
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\bin\Debug\netcoreapp3.1\FundApps.CourierKata.pdb
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\obj\Debug\netcoreapp3.1\FundApps.CourierKata.csproj.AssemblyReference.cache
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\obj\Debug\netcoreapp3.1\FundApps.CourierKata.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\obj\Debug\netcoreapp3.1\FundApps.CourierKata.AssemblyInfoInputs.cache
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\obj\Debug\netcoreapp3.1\FundApps.CourierKata.AssemblyInfo.cs
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\obj\Debug\netcoreapp3.1\FundApps.CourierKata.csproj.CoreCompileInputs.cache
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\obj\Debug\netcoreapp3.1\FundApps.CourierKata.dll
+C:\Code\FundApps.CourierKata\FundApps.CourierKata\FundApps.CourierKata\obj\Debug\netcoreapp3.1\FundApps.CourierKata.pdb

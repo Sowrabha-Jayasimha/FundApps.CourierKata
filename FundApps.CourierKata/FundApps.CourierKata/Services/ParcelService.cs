@@ -20,6 +20,11 @@ namespace FundApps.CourierKata
                 parcel.Cost = 3;
                 parcel.ParcelType = ParcelType.Small;
             }
+            else if (length < 50 && width < 50 && height < 50)
+            {
+                parcel.Cost = 8;
+                parcel.ParcelType = ParcelType.Medium;
+            }
 
             return parcel;
         }

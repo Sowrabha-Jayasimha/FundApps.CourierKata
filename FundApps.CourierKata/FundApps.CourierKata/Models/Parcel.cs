@@ -9,6 +9,14 @@ namespace FundApps.CourierKata.Models
         public int HeightInCentimeters { get; set; }
         public int WeightInKilograms { get; set; }
         public ParcelType ParcelType { get; set; }
-        public decimal Cost { get; set; }
+        public decimal BaseParcelCost { get; set; }
+        public decimal ExtraWeightCost { get; set; }
+        public decimal TotalCost 
+        { 
+            get
+            {
+                return BaseParcelCost + ExtraWeightCost;
+            }
+        }
     }
 }

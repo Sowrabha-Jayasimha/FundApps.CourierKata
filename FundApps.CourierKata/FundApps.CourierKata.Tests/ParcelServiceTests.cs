@@ -1,5 +1,6 @@
 using FundApps.CourierKata.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace FundApps.CourierKata.Tests
 {
@@ -31,19 +32,25 @@ namespace FundApps.CourierKata.Tests
         }
 
         [TestMethod]
-        public void CreateParcel_WhenDimentionIs20Cm_CreatesMediumParcel()
+        [DataRow(5, 5, 5, 3, ParcelType.Small)]
+        [DataRow(30, 30, 30, 8, ParcelType.Medium)]
+        [DataRow(50, 50, 50, 15, ParcelType.Large)]
+        [DataRow(75, 75, 75, 15, ParcelType.Large)]
+        [DataRow(175, 175, 175, 25, ParcelType.XL)]
+        [DataRow(100, 100, 100, 25, ParcelType.XL)]
+        public void CreateParcel_WhenDimentionsAreEntered_CreatesRightParcel(int length, int width, int height, 
+            int expectedCost, ParcelType parcelType)
         {
-            //Arrange
-            int length = 20;
-            int width = 20;
-            int height = 20;
 
             //Act 
             var parcel = _service.CreateParcel(length, width, height);
 
             //Assert
-            Assert.AreEqual(ParcelType.Medium, parcel.ParcelType);
-            Assert.AreEqual(8, parcel.Cost);
+            Assert.AreEqual(parcelType, parcel.ParcelType);
+
+            //Explicitly casting it here as DataRow cannot accept decimal type. 
+            //Will have to look for another solution in real world situation
+            Assert.AreEqual(Convert.ToDecimal(expectedCost), parcel.Cost);
         }
     }
 }

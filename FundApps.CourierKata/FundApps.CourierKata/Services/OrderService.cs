@@ -1,7 +1,6 @@
-﻿
-using FundApps.CourierKata.Models;
-using System;
+﻿using FundApps.CourierKata.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FundApps.CourierKata.Services
 {
@@ -9,7 +8,14 @@ namespace FundApps.CourierKata.Services
     {
         public Order CreateOrder(List<Parcel> parcels)
         {
-            throw new NotImplementedException();
+            var order = new Order
+            {
+                Parcels = parcels
+            };
+
+            order.TotalCost = parcels.Sum(p => p.Cost);
+
+            return order;
         }
     }
 }

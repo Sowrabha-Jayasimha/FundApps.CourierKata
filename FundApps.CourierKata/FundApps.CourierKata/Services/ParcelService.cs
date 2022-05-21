@@ -1,8 +1,7 @@
 ﻿using FundApps.CourierKata.Enums;
 using FundApps.CourierKata.Models;
-using FundApps.CourierKata.Services;
 
-namespace FundApps.CourierKata
+namespace FundApps.CourierKata.Services
 {
     public class ParcelService : IParcelService
     {

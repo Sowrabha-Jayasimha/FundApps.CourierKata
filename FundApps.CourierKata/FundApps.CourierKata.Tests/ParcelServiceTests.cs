@@ -53,5 +53,24 @@ namespace FundApps.CourierKata.Tests
             //Will have to look for another solution in real world situation
             Assert.AreEqual(Convert.ToDecimal(expectedCost), parcel.Cost);
         }
+
+        [TestMethod]
+        public void CreateParcel_WhenSmallParcelIsMoreThan1Kg_AddAdditionalCharges()
+        {
+            //Arrange
+            int length = 1;
+            int width = 1;
+            int height = 1;
+            int weight = 2;
+
+            //Act
+            //Act
+            var parcel = _service.CreateParcel(length, width, height);
+
+            //Assert
+            Assert.AreEqual(ParcelType.Small, parcel.ParcelType);
+            Assert.AreEqual(5, parcel.Cost);
+
+        }
     }
 }

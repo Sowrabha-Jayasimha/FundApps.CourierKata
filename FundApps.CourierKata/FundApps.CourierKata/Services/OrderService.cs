@@ -13,8 +13,7 @@ namespace FundApps.CourierKata.Services
                 Parcels = parcels
             };
 
-            order.StandardShippingCost = parcels.Sum(p => p.Cost);
-            order.SpeedyShippingCost = order.StandardShippingCost * 2;
+            order.StandardShippingCost = parcels.Sum(p => p.Cost);           
 
             return order;
         }

@@ -6,7 +6,13 @@ namespace FundApps.CourierKata.Models
     {
         public List<Parcel> Parcels { get; set; }
         public decimal StandardShippingCost { get; set; }
-        public decimal SpeedyShippingCost { get; set; }
+        public decimal SpeedyShippingCost 
+        { 
+            get
+            {
+                return StandardShippingCost * 2;
+            }
+        }
 
     }
 }

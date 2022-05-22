@@ -75,5 +75,22 @@ namespace FundApps.CourierKata.Tests
             Assert.AreEqual(5, parcel.TotalCost);
 
         }
+
+        [TestMethod]
+        public void CreateParcel_WhenParcelWeightIsGreaterThan30Kgs_CreatesHeavyWeightParcel()
+        {
+            //Arrange
+            int length = 10;
+            int width = 10;
+            int height = 10;
+            int weight = 35; 
+
+            //Act
+            var parcel = _service.CreateParcel(length, width, height, weight);
+
+            //Assert
+            Assert.AreEqual(ParcelType.Heavy, parcel.ParcelType);
+            Assert.AreEqual(50, parcel.TotalCost);
+        }
     }
 }

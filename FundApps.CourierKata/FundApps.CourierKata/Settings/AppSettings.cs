@@ -23,5 +23,10 @@
         public decimal OverweightCostPerKg { get; set; }
         public decimal HeavyParcelCost { get; set; }
         public decimal HeavyParcelOverweightCostPerKg { get; set; }
+
+        //Discounts
+        public int SmallParcelManiaNumber { get; set; }
+        public int MediumParcelManiaNumber { get; set; }
+        public int MixedParcelManiaNumber { get; set; }
     }
 }

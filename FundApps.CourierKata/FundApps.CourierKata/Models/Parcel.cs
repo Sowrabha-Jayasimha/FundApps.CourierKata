@@ -11,6 +11,7 @@ namespace FundApps.CourierKata.Models
         public ParcelType ParcelType { get; set; }
         public decimal BaseParcelCost { get; set; }
         public decimal ExtraWeightCost { get; set; }
+        public bool IsDiscountApplied { get; set; }
         public decimal TotalCost 
         { 
             get

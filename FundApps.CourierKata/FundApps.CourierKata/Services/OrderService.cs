@@ -1,4 +1,6 @@
-﻿using FundApps.CourierKata.Models;
+﻿using FundApps.CourierKata.Extensions;
+using FundApps.CourierKata.Models;
+using FundApps.CourierKata.Settings;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,6 +8,11 @@ namespace FundApps.CourierKata.Services
 {
     public class OrderService
     {
+        private readonly AppSettings _appSettings;
+        public OrderService(AppSettings appSettings)
+        {
+            _appSettings = appSettings;
+        }
         public Order CreateOrder(List<Parcel> parcels)
         {
             var order = new Order
@@ -13,7 +20,7 @@ namespace FundApps.CourierKata.Services
                 Parcels = parcels
             };
 
-            order.StandardShippingCost = parcels.Sum(p => p.TotalCost);           
+            order.SetDiscountForOrder(_appSettings);
 
             return order;
         }

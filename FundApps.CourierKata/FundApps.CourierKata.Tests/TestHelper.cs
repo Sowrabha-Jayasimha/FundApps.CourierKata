@@ -23,7 +23,10 @@ namespace FundApps.CourierKata.Tests
                 HeavyParcelCost = 50,
                 HeavyParcelMinWeight = 30,
                 HeavyParcelMaxWeight = 50,
-                HeavyParcelOverweightCostPerKg = 1
+                HeavyParcelOverweightCostPerKg = 1,
+                SmallParcelManiaNumber = 4,
+                MediumParcelManiaNumber = 3,
+                MixedParcelManiaNumber = 5
             };
         }
     }

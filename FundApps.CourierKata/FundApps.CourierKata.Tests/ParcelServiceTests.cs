@@ -51,11 +51,11 @@ namespace FundApps.CourierKata.Tests
             //Assert
             Assert.AreEqual(parcelType, parcel.ParcelType);
 
-            //Explicitly casting it here as DataRow cannot accept decimal type. 
+            //Using Int as DataRow cannot accept decimal type. 
             //Will have to look for another solution in real world situation
-            Assert.AreEqual(Convert.ToDecimal(expectedBaseCost), parcel.BaseParcelCost);
-            Assert.AreEqual(Convert.ToDecimal(expectedExtraCost), parcel.ExtraWeightCost);
-            Assert.AreEqual(Convert.ToDecimal(expectedTotalCost), parcel.TotalCost);
+            Assert.AreEqual(expectedBaseCost, parcel.BaseParcelCost);
+            Assert.AreEqual(expectedExtraCost, parcel.ExtraWeightCost);
+            Assert.AreEqual(expectedTotalCost, parcel.TotalCost);
         }
 
         [TestMethod]

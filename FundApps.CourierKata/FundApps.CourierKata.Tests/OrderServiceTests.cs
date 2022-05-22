@@ -56,5 +56,26 @@ namespace FundApps.CourierKata.Tests
             Assert.AreEqual(26, order.StandardShippingCost);
             Assert.AreEqual(52, order.SpeedyShippingCost);
         }
+
+        [TestMethod]
+        public void CrateOrder_WhenFourSmallParcels_GiveDiscount()
+        {
+            //Arrange
+            var parcels = new List<Parcel>
+            {
+                _parcelService.CreateParcel(3, 3, 3, 1),
+                _parcelService.CreateParcel(5, 5, 5, 1),
+                _parcelService.CreateParcel(2, 2, 2, 1),
+                _parcelService.CreateParcel(3, 3, 3, 1)
+            };
+
+            //Act
+            var order = _orderService.CreateOrder(parcels);
+
+            //Assert
+            Assert.IsNotNull(order);
+            Assert.AreEqual(9, order.StandardShippingCost);
+            Assert.AreEqual(18, order.SpeedyShippingCost);
+        }
     }
 }

@@ -77,5 +77,77 @@ namespace FundApps.CourierKata.Tests
             Assert.AreEqual(9, order.StandardShippingCost);
             Assert.AreEqual(18, order.SpeedyShippingCost);
         }
+
+        [TestMethod]
+        public void CrateOrder_WhenMultipleMediumParcels_GiveDiscountToEveryThirdParcel()
+        {
+            //Arrange
+            var parcels = new List<Parcel>
+            {
+                _parcelService.CreateParcel(20, 20, 20, 2),
+                _parcelService.CreateParcel(20, 20, 20, 2),
+                _parcelService.CreateParcel(20, 20, 20, 2),
+                _parcelService.CreateParcel(20, 20, 20, 4),
+                _parcelService.CreateParcel(20, 20, 20, 4),
+                _parcelService.CreateParcel(20, 20, 20, 4),
+            };
+
+            //Act
+            var order = _orderService.CreateOrder(parcels);
+
+            //Assert
+            Assert.IsNotNull(order);
+            Assert.AreEqual(18, order.DiscountApplied);
+            Assert.AreEqual(36, order.StandardShippingCost);
+            Assert.AreEqual(72, order.SpeedyShippingCost);
+        }
+
+        [TestMethod]
+        public void CrateOrder_WhenMultipleParcelsOfDifferentTypes_GiveDiscountToEveryFifthParcel()
+        {
+            //Arrange
+            var parcels = new List<Parcel>
+            {
+                _parcelService.CreateParcel(3, 3, 3, 1),
+                _parcelService.CreateParcel(5, 5, 5, 1),
+                _parcelService.CreateParcel(20, 20, 20, 2),
+                _parcelService.CreateParcel(20, 20, 20, 4),
+                _parcelService.CreateParcel(60, 60, 60, 5)                
+            };
+
+            //Act
+            var order = _orderService.CreateOrder(parcels);
+
+            //Assert
+            Assert.IsNotNull(order);
+            Assert.AreEqual(36, order.StandardShippingCost);
+            Assert.AreEqual(72, order.SpeedyShippingCost);
+        }
+
+        [TestMethod]
+        public void CreateOrder_WhenCombinationOfParcels_GivesMultipleDiscounts()
+        {
+            //Arrange
+            var parcels = new List<Parcel>
+            {
+                _parcelService.CreateParcel(3, 3, 3, 1),
+                _parcelService.CreateParcel(5, 5, 5, 1),
+                _parcelService.CreateParcel(2, 2, 2, 1),
+                _parcelService.CreateParcel(3, 3, 3, 1),
+                _parcelService.CreateParcel(20, 20, 20, 2),
+                _parcelService.CreateParcel(20, 20, 20, 2),
+                _parcelService.CreateParcel(20, 20, 20, 2)                
+            };
+
+            //Act
+            var order = _orderService.CreateOrder(parcels);
+
+            //Assert
+            Assert.IsNotNull(order);
+            Assert.AreEqual(36, order.BaseParcelCost);
+            Assert.AreEqual(14, order.DiscountApplied);
+            Assert.AreEqual(22, order.StandardShippingCost);
+            Assert.AreEqual(44, order.SpeedyShippingCost);
+        }
     }
 }

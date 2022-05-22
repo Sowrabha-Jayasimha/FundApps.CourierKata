@@ -2,7 +2,6 @@
 using FundApps.CourierKata.Models;
 using FundApps.CourierKata.Settings;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace FundApps.CourierKata.Services
 {

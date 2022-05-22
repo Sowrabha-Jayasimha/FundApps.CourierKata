@@ -22,7 +22,7 @@ namespace FundApps.CourierKata.Tests
             //Arrange
             int length = 1;
             int width = 1;
-            int height = 1;            
+            int height = 1;
 
             //Act
             var parcel = _service.CreateParcel(length, width, height, 1);
@@ -62,7 +62,7 @@ namespace FundApps.CourierKata.Tests
         public void CreateParcel_WhenSmallParcelIsMoreThan1Kg_AddAdditionalCharges()
         {
             //Arrange
-            int length = 1; 
+            int length = 1;
             int width = 1;
             int height = 1;
             int weight = 2;
@@ -77,20 +77,22 @@ namespace FundApps.CourierKata.Tests
         }
 
         [TestMethod]
-        public void CreateParcel_WhenParcelWeightIsGreaterThan30Kgs_CreatesHeavyWeightParcel()
+        [DataRow(35, 50)]
+        [DataRow(60, 60)]
+        public void CreateParcel_WhenParcelWeightIsGreaterThan30Kgs_CreatesHeavyWeightParcel(int parcelWeight, int expectedTotalCost)
         {
             //Arrange
             int length = 10;
             int width = 10;
             int height = 10;
-            int weight = 35; 
+            int weight = parcelWeight; 
 
             //Act
             var parcel = _service.CreateParcel(length, width, height, weight);
 
             //Assert
             Assert.AreEqual(ParcelType.Heavy, parcel.ParcelType);
-            Assert.AreEqual(50, parcel.TotalCost);
+            Assert.AreEqual(expectedTotalCost, parcel.TotalCost);
         }
     }
 }

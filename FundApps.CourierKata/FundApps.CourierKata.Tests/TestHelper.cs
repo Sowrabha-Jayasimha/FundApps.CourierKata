@@ -18,7 +18,12 @@ namespace FundApps.CourierKata.Tests
                 SmallParcelCost = 3,
                 MediumParcelCost = 8,
                 LargeParcelCost = 15,
-                XlParcelCost = 25
+                XlParcelCost = 25,
+                OverweightCostPerKg = 2,
+                HeavyParcelCost = 50,
+                HeavyParcelMinWeight = 30,
+                HeavyParcelMaxWeight = 50,
+                HeavyParcelOverweightCostPerKg = 1
             };
         }
     }

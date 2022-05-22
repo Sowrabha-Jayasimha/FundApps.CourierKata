@@ -9,7 +9,11 @@ namespace FundApps.CourierKata.Extensions
     {
         public static Parcel SetParcelType(this Parcel parcel, AppSettings appSettings)
         {
-            if (parcel.LengthInCentimeters < appSettings.SmallParcelMaxDimension && 
+            if(parcel.WeightInKilograms >= appSettings.HeavyParcelMinWeight)
+            {
+                parcel.ParcelType = ParcelType.Heavy;
+            }
+            else if (parcel.LengthInCentimeters < appSettings.SmallParcelMaxDimension && 
                 parcel.WidthInCentimeters < appSettings.SmallParcelMaxDimension && 
                 parcel.HeightInCentimeters < appSettings.SmallParcelMaxDimension)
             {                
@@ -42,23 +46,29 @@ namespace FundApps.CourierKata.Extensions
                 case ParcelType.Small:
                     parcel.BaseParcelCost = appSettings.SmallParcelCost;
                     parcel.ExtraWeightCost = (parcel.WeightInKilograms > appSettings.SmallParcelMaxWeight) ? 
-                        (parcel.WeightInKilograms - appSettings.SmallParcelMaxWeight) * 2 : 0;
+                        (parcel.WeightInKilograms - appSettings.SmallParcelMaxWeight) * appSettings.OverweightCostPerKg : 0;
                     break;
                 case ParcelType.Medium:
                     parcel.BaseParcelCost = appSettings.MediumParcelCost;
                     parcel.ExtraWeightCost = (parcel.WeightInKilograms > appSettings.MediumParcelMaxWeight) ?
-                        (parcel.WeightInKilograms - appSettings.MediumParcelMaxWeight) * 2 : 0;
+                        (parcel.WeightInKilograms - appSettings.MediumParcelMaxWeight) * appSettings.OverweightCostPerKg : 0;
                     break;
                 case ParcelType.Large:
                     parcel.BaseParcelCost = appSettings.LargeParcelCost;
                     parcel.ExtraWeightCost = (parcel.WeightInKilograms > appSettings.LargeParcelMaxWeight) ?
-                        (parcel.WeightInKilograms - appSettings.LargeParcelMaxWeight) * 2 : 0;
+                        (parcel.WeightInKilograms - appSettings.LargeParcelMaxWeight) * appSettings.OverweightCostPerKg : 0;
                     break;
                 case ParcelType.XL:
                     parcel.BaseParcelCost = appSettings.XlParcelCost;
                     parcel.ExtraWeightCost = (parcel.WeightInKilograms > appSettings.XlParcelMaxWeight) ?
-                        (parcel.WeightInKilograms - appSettings.XlParcelMaxWeight) * 2 : 0;
+                        (parcel.WeightInKilograms - appSettings.XlParcelMaxWeight) * appSettings.OverweightCostPerKg : 0;
                     break;
+                case ParcelType.Heavy:
+                    parcel.BaseParcelCost = appSettings.HeavyParcelCost;
+                    parcel.ExtraWeightCost = (parcel.WeightInKilograms > appSettings.HeavyParcelMaxWeight) ?
+                        (parcel.WeightInKilograms - appSettings.HeavyParcelMaxWeight) * appSettings.HeavyParcelOverweightCostPerKg : 0;
+                    break;
+
             }
 
             return parcel;
